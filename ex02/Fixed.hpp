@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#pragma once
 #ifndef FIXED_HPP
 # define FIXED_HPP
 
@@ -19,8 +20,8 @@
 class Fixed
 {
   private:
-	int _value;
-	static const int _fractionalBits = 8;
+	int					_value;
+	static const int	_fractionalBits = 8;
 
   public:
 	Fixed();
@@ -28,27 +29,29 @@ class Fixed
 	Fixed(const float value);
 	Fixed(const Fixed &other);
 	~Fixed();
-
-	Fixed &operator=(const Fixed &other);
-
 	float toFloat() const;
 	int toInt() const;
-
-	Fixed &operator++();   // prefix
-	Fixed operator++(int); // postfix
-
+	Fixed &operator=(const Fixed &other);
+	Fixed &operator++();
+	Fixed operator++(int);
+	Fixed operator--();
+	Fixed operator--(int);
+	Fixed operator+(Fixed const &other) const;
+	Fixed operator-(Fixed const &other) const;
 	Fixed operator*(Fixed const &other) const;
-
+	Fixed operator/(Fixed const &other) const;
+	Fixed operator!=(Fixed const &other) const;
+	Fixed operator==(Fixed const &other) const;
+	Fixed operator>=(Fixed const &other) const;
+	Fixed operator<=(Fixed const &other) const;
+	Fixed operator>(Fixed const &other) const;
+	Fixed operator<(Fixed const &other) const;
 	static const Fixed &max(const Fixed &a, const Fixed &b);
-
-	int getRawBits() const
-	{
-		return (_value);
-	}
-	void setRawBits(int const raw)
-	{
-		_value = raw;
-	}
+	static Fixed &max(Fixed &a, Fixed &b);
+	static const Fixed &min(const Fixed &a, const Fixed &b);
+	static Fixed &min(Fixed &a, Fixed &b);
+	int getRawBits() const;
+	void setRawBits(int const raw);
 };
 
 std::ostream &operator<<(std::ostream &out, const Fixed &fixed);
