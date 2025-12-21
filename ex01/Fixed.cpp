@@ -12,7 +12,7 @@
 
 #include "Fixed.hpp"
 
-Fixed::Fixed(void) : _value(0.0)
+Fixed::Fixed(void) : _value(0)
 {
 	std::cout << "Default constructor called" << std::endl;
 }
@@ -20,13 +20,13 @@ Fixed::Fixed(void) : _value(0.0)
 Fixed::Fixed(const int intValue)
 {
 	std::cout << "Int constructor called" << std::endl;
-	_value = intValue;
+	_value = intValue << _frac_bits;
 }
 
 Fixed::Fixed(const float floatValue)
 {
 	std::cout << "Float constructor called" << std::endl;
-	_value = floatValue;
+	_value = roundf(floatValue * (1 << _frac_bits));
 }
 
 Fixed::Fixed(const Fixed &other)
@@ -52,12 +52,12 @@ Fixed::~Fixed()
 
 float Fixed::toFloat(void) const
 {
-	return (_value);
+	return ((float)_value / (1 << _frac_bits));
 }
 
 int Fixed::toInt(void) const
 {
-	return (static_cast<int>(_value));
+	return (_value >> _frac_bits);
 }
 
 std::ostream &operator<<(std::ostream &out, const Fixed &fixed)

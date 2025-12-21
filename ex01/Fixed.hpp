@@ -14,11 +14,11 @@
 # define FIXED_HPP
 
 # include <iostream>
-
+# include <cmath>
 class Fixed
 {
 private:
-	float 				_value;
+	int 				_value;
 	static const int	_frac_bits = 8;
 public:
 	Fixed(void);
