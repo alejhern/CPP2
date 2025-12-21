@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = Fixed
+NAME = Bsp
 SRCS = Fixed.cpp Point.cpp bsp.cpp main.cpp
 OBJS = $(SRCS:.cpp=.o)
 CC = c++

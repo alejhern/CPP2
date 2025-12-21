@@ -45,7 +45,7 @@ Fixed &Fixed::operator=(const Fixed &other)
 	return (*this);
 }
 
-Fixed::~Fixed()
+Fixed::~Fixed(void)
 {
 	std::cout << "Destructor called" << std::endl;
 }
@@ -58,6 +58,16 @@ float Fixed::toFloat(void) const
 int Fixed::toInt(void) const
 {
 	return (_value >> _frac_bits);
+}
+
+int Fixed::getRawBits(void) const
+{
+	return (_value);
+}
+
+void Fixed::setRawBits(int const raw)
+{
+	_value = raw;
 }
 
 std::ostream &operator<<(std::ostream &out, const Fixed &fixed)

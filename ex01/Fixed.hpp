@@ -25,10 +25,12 @@ public:
 	Fixed(const int intValue);
 	Fixed(const float floatValue);
 	Fixed(const Fixed &other);
-	~Fixed();
+	~Fixed(void);
 	Fixed &operator=(const Fixed &other);
 	float toFloat(void) const;
 	int toInt(void) const;
+	int getRawBits(void) const;
+	void setRawBits(int const raw);
 };
 
 std::ostream &operator<<(std::ostream &out, const Fixed &fixed);

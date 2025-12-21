@@ -12,7 +12,7 @@
 
 #include "Fixed.hpp"
 
-Fixed::Fixed() : _value(0)
+Fixed::Fixed(void) : _value(0)
 {
 }
 
@@ -31,7 +31,7 @@ Fixed::Fixed(const Fixed &other)
 	_value = other._value;
 }
 
-Fixed::~Fixed()
+Fixed::~Fixed(void)
 {
 }
 
@@ -42,17 +42,17 @@ Fixed &Fixed::operator=(const Fixed &other)
 	return (*this);
 }
 
-float Fixed::toFloat() const
+float Fixed::toFloat(void) const
 {
 	return ((float)_value / (1 << _fractionalBits));
 }
 
-int Fixed::toInt() const
+int Fixed::toInt(void) const
 {
 	return (_value >> _fractionalBits);
 }
 
-Fixed &Fixed::operator++()
+Fixed &Fixed::operator++(void)
 {
 	++_value;
 	return (*this);
@@ -66,7 +66,7 @@ Fixed Fixed::operator++(int)
 	return (temp);
 }
 
-Fixed Fixed::operator--()
+Fixed Fixed::operator--(void)
 {
 	--_value;
 	return (*this);
@@ -178,7 +178,7 @@ Fixed &Fixed::min(Fixed &a, Fixed &b)
 		return (b);
 }
 
-int Fixed::getRawBits() const
+int Fixed::getRawBits(void) const
 {
 	return (_value);
 }

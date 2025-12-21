@@ -24,17 +24,17 @@ class Fixed
 	static const int	_fractionalBits = 8;
 
   public:
-	Fixed();
+	Fixed(void);
 	Fixed(const int value);
 	Fixed(const float value);
 	Fixed(const Fixed &other);
-	~Fixed();
-	float toFloat() const;
-	int toInt() const;
+	~Fixed(void);
+	float toFloat(void) const;
+	int toInt(void) const;
 	Fixed &operator=(const Fixed &other);
-	Fixed &operator++();
+	Fixed &operator++(void);
 	Fixed operator++(int);
-	Fixed operator--();
+	Fixed operator--(void);
 	Fixed operator--(int);
 	Fixed operator+(Fixed const &other) const;
 	Fixed operator-(Fixed const &other) const;
@@ -50,7 +50,7 @@ class Fixed
 	static Fixed &max(Fixed &a, Fixed &b);
 	static const Fixed &min(const Fixed &a, const Fixed &b);
 	static Fixed &min(Fixed &a, Fixed &b);
-	int getRawBits() const;
+	int getRawBits(void) const;
 	void setRawBits(int const raw);
 };
 
