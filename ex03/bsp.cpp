@@ -6,7 +6,7 @@
 /*   By: alejhern <alejhern@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 23:11:26 by alejhern          #+#    #+#             */
-/*   Updated: 2025/12/20 22:36:06 by alejhern         ###   ########.fr       */
+/*   Updated: 2025/12/22 15:55:21 by alejhern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,15 @@
 
 static float	area(const Point &a, const Point &b, const Point &c)
 {
-	float	ax;
-	float	ay;
-	float	bx;
-	float	by;
-	float	cx;
-	float	cy;
+	float	area;
 
-	ax = a.getX().toFloat();
-	ay = a.getY().toFloat();
-	bx = b.getX().toFloat();
-	by = b.getY().toFloat();
-	cx = c.getX().toFloat();
-	cy = c.getY().toFloat();
-	return (fabs((ax * (by - cy) + bx * (cy - ay) + cx * (ay - by)) / 2.0f));
+	area = ((a.getX().toFloat() * (b.getY().toFloat() - c.getY().toFloat()))
+			+ (b.getX().toFloat() * (c.getY().toFloat() - a.getY().toFloat()))
+			+ (c.getX().toFloat() * (a.getY().toFloat() - b.getY().toFloat())))
+		/ 2;
+	if (area < 0)
+		area *= -1;
+	return (area)
 }
 
 bool	bsp(const Point &a, const Point &b, const Point &c, const Point &point)
@@ -44,6 +39,7 @@ bool	bsp(const Point &a, const Point &b, const Point &c, const Point &point)
 	d1 = area(point, b, c);
 	d2 = area(a, point, c);
 	d3 = area(a, b, point);
-	return (fabs(d0 - (d1 + d2 + d3)) < EPS && d1 > EPS && d2 > EPS
-		&& d3 > EPS);
+	if (!d1 || !d2 || !d3)
+		return (false);
+	return (d0 == d1 + d2 + d3);
 }
